@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamics of Braided Rivers | Primary Research | Saurabh Toraskar</title>
+    <!-- Google Fonts: Outfit (Headings) & Plus Jakarta Sans (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-sage: #5b8c6d;
+            --primary-sage-glow: rgba(91, 140, 109, 0.15);
+            --accent-clay: #c87a53;
+            --accent-ocean: #4b7e8c;
+            --bg-dark-basalt: #0f1115;
+            --bg-dark-slate: rgba(22, 26, 33, 0.65);
+            --text-primary: #f3f4f6;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-light: rgba(255, 255, 255, 0.04);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-dark-basalt);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glowing Background Blobs */
+        .blob-bg {
+            position: fixed;
+            width: 80vw;
+            height: 80vw;
+            border-radius: 50%;
+            z-index: -2;
+            pointer-events: none;
+            filter: blur(120px);
+            opacity: 0.5;
+        }
+
+        .blob-1 {
+            top: -20%;
+            left: -20%;
+            background: radial-gradient(circle, rgba(200, 122, 83, 0.06) 0%, rgba(200, 122, 83, 0) 70%);
+        }
+
+        .blob-2 {
+            bottom: -20%;
+            right: -20%;
+            background: radial-gradient(circle, rgba(91, 140, 109, 0.05) 0%, rgba(91, 140, 109, 0) 70%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Nav styling */
+        nav {
+            background: rgba(15, 17, 21, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1.2rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-clay) 0%, var(--primary-sage) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: var(--transition-smooth);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            padding: 8px 18px;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.12);
+            transform: translateX(-3px);
+        }
+
+        /* Container & Grid layout */
+        main {
+            padding: 5rem 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-detail-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 8px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--accent-clay);
+            background: rgba(200, 122, 83, 0.08);
+            border: 1px solid rgba(200, 122, 83, 0.15);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 40%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-meta-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .meta-item i {
+            color: var(--accent-clay);
+        }
+
+        /* Graphic Illustration Banner */
+        .project-graphic-container {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            margin-bottom: 3.5rem;
+            background: #12151c;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-graphic {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Grid for details */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .details-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+
+        .details-body h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 2.5rem 0 1.2rem 0;
+        }
+
+        .details-body h2:first-child {
+            margin-top: 0;
+        }
+
+        .details-body p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-body ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .details-body li {
+            position: relative;
+            padding-left: 2rem;
+            color: var(--text-secondary);
+            font-size: 1.02rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .details-body li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--accent-clay);
+            font-size: 0.9rem;
+        }
+
+        /* Sidebar info cards */
+        .sidebar-card {
+            background: var(--bg-dark-slate);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .sidebar-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.8rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, var(--accent-clay) 0%, #7c4125 100%);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            border: none;
+            box-shadow: 0 4px 15px rgba(200, 122, 83, 0.15);
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(200, 122, 83, 0.3);
+            background: linear-gradient(135deg, var(--accent-clay) 0%, var(--accent-clay) 100%);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 4rem 10%;
+            background: rgba(15, 17, 21, 0.9);
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-top: 6rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Glowing Background Elements -->
+    <div class="blob-bg blob-1"></div>
+    <div class="blob-bg blob-2"></div>
+    <div class="grid-overlay"></div>
+
+    <!-- Navigation Header -->
+    <nav>
+        <a href="index.html" class="logo">ST</a>
+        <a href="index.html#research" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Research</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <div class="project-detail-header">
+            <span class="project-tag">Primary Research</span>
+            <h1>Dynamics of Braided Rivers</h1>
+            
+            <div class="project-meta-strip">
+                <div class="meta-item">
+                    <i class="fa-solid fa-earth-americas"></i>
+                    <span>Affiliation: FGRS Lab, IISER Bhopal</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-compass"></i>
+                    <span>Domain: Fluvial Geomorphology & Remote Sensing</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fa-solid fa-satellite"></i>
+                    <span>Instruments: Landsat, Sentinel, GEE Analytics</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Generated Thematic Graphic -->
+        <div class="project-graphic-container">
+            <img src="river_morphology.png" alt="Dynamics of Braided Rivers Fluvial Geomorphology" class="project-graphic">
+        </div>
+
+        <div class="details-grid">
+            <div class="details-body">
+                <h2>Research Scope</h2>
+                <p>Braided rivers are highly dynamic, multi-channel geological systems defined by active channel migration, sediment bar erosion, and frequent channel avulsions. Mapping these morphodynamics over long temporal scales is critical to river basin management, structural risk mitigation (bridges, embankments), and understanding hydrological responses to climatic variations. This research investigates multi-decadal braided river dynamics using a coupled machine learning and remote sensing workflow.</p>
+                
+                <h2>Methodology & Innovations</h2>
+                <p>The FGRS Lab uses deep geological indices combined with modern temporal deep learning to map dynamic changes:</p>
+                <ul>
+                    <li><strong>Channel Migration Mapping:</strong> Extracted long-term river boundaries from historical Landsat and Sentinel collections using modified index formulations (mNDWI) and dynamic thresholding.</li>
+                    <li><strong>Sediment Bar Evolution:</strong> Developed spatial clustering workflows to monitor sandbar creation, vegetative stabilization, and subsequent high-discharge erosion sweeps.</li>
+                    <li><strong>Avulsion Track Modeling:</strong> Designed network routing and terrain gradient analyses to predict channel migration directions and avulsion-prone zones.</li>
+                </ul>
+
+                <h2>Significance</h2>
+                <p>Providing high-precision temporal maps of river shifts supports resilient infrastructural engineering across floodplains. The FGRS Lab's spatial pipelines help regional planning bodies predict morphological shifts and plan land usage boundaries along high-energy rivers.</p>
+            </div>
+
+            <div class="details-sidebar">
+                <div class="sidebar-card">
+                    <h3>Technologies Used</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Google Earth Engine</span>
+                        <span class="tech-tag">QGIS</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Geopandas</span>
+                        <span class="tech-tag">Rasterio</span>
+                        <span class="tech-tag">Spectral Indices</span>
+                        <span class="tech-tag">Fluvial Hydraulics</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-card">
+                    <h3>Lab & Team Info</h3>
+                    <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Learn more about the Fluvial Geomorphology & Remote Sensing (FGRS) Lab at IISER Bhopal.</p>
+                    <a href="https://scholar.google.com/citations?user=eLlpAXsAAAAJ" target="_blank" class="action-btn">
+                        <i class="fa-solid fa-graduation-cap"></i> Google Scholar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Saurabh Toraskar. Geology & Climate AI Portfolio.</p>
+        <p>Built with HTML5 & Custom CSS</p>
+    </footer>
+
+</body>
+
+</html>
