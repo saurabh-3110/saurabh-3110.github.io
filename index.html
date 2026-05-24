@@ -104,9 +104,9 @@
             color: var(--primary-sage);
         }
 
-        /* HERO SECTION - Reduced bottom padding to 3rem */
+        /* HERO SECTION - Increased bottom padding */
         header {
-            padding: 8rem 10% 3rem 10%;
+            padding: 8rem 10% 7rem 10%;
             background: linear-gradient(to bottom, var(--primary-sage-light), #ffffff);
         }
 
@@ -117,21 +117,6 @@
             grid-template-columns: 1.2fr 0.8fr;
             gap: 4rem;
             align-items: center;
-        }
-
-        .hero-badge {
-            background: var(--primary-sage);
-            color: white;
-            padding: 6px 20px;
-            border-radius: 9999px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 12px rgba(74, 115, 89, 0.2);
         }
 
         header h1 {
@@ -210,9 +195,9 @@
             }
         }
 
-        /* GLOBAL SECTION SPACING - Reduced to 3.5rem */
+        /* GLOBAL SECTION SPACING - Increased to 7rem */
         section {
-            padding: 3.5rem 10%;
+            padding: 7rem 10%;
         }
 
         section:nth-child(even) {
@@ -224,7 +209,6 @@
             font-size: 2.2rem;
             font-weight: 800;
             margin-bottom: 2.5rem;
-            /* Reduced from 3.5rem */
             position: relative;
             color: var(--primary-sage-dark);
         }
@@ -323,7 +307,6 @@
         .education-item {
             position: relative;
             margin-bottom: 2.5rem;
-            /* Reduced from 3.5rem */
         }
 
         .education-item::before {
@@ -347,7 +330,6 @@
             margin-left: 10px;
         }
 
-        /* FOOTER SPACING - Reduced to 3rem */
         footer {
             text-align: center;
             padding: 3rem 10%;
@@ -397,38 +379,44 @@
         </div>
     </nav>
 
-    <header>
+<header>
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">Actively Seeking PhD Opportunities</div>
                 <h1>Saurabh Toraskar</h1>
-                <p>BS-MS student at IISER Bhopal investigating the intersection of machine learning, climate resilience,
-                    and geological processes.</p>
-
-                <div class="social-links">
-                    <a href="mailto:saurabhtoraskar31@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://github.com/saurabh-3110" target="_blank" title="GitHub"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/saurabh-toraskar-a4b502223/" target="_blank"
-                        title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://scholar.google.com/citations?user=eLlpAXsAAAAJ" target="_blank" title="Scholar"><i
-                            class="fas fa-graduation-cap"></i></a>
+                <p style="text-align: justify;">BS–MS graduate from Indian Institute of Science Education and Research Bhopal working at the intersection of AI and Earth Sciences, with interests in data-driven hydrology, climate science, and environmental modeling.</p>
+                
+                <!-- Research Theme Badges -->
+                <div class="hero-badges" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1.5rem;">
+                    <span class="skill-pill">Computational Hydrology</span>
+                    <span class="skill-pill">Spatiotemporal Modeling</span>
+                    <span class="skill-pill">Remote Sensing</span>
+                    <span class="skill-pill">Explainable AI (XAI)</span>
+                    <span class="skill-pill">AutoML</span>
+                    <span class="skill-pill">Interpretable Machine Learning</span>
                 </div>
             </div>
 
-            <div class="hero-image-area">
+            <!-- Image Area with Social Links moved below -->
+            <div class="hero-image-area" style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
                 <div class="profile-frame">
                     <img src="photo.jpg" alt="Saurabh Toraskar" class="profile-photo">
+                </div>
+                
+                <div class="social-links">
+                    <a href="mailto:saurabhtoraskar31@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/saurabh-3110" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/saurabh-toraskar-a4b502223/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://scholar.google.com/citations?user=eLlpAXsAAAAJ" target="_blank" title="Scholar"><i class="fas fa-graduation-cap"></i></a>
                 </div>
             </div>
         </div>
     </header>
 
     <style>
-        /* RESEARCH SECTION SPACING - Reduced to 3.5rem */
+        /* RESEARCH SECTION SPACING - Increased to 7rem */
         #research {
             background-color: var(--primary-sage-light);
-            padding: 3.5rem 10%;
+            padding: 7rem 10%;
         }
 
         .research-grid {
@@ -589,7 +577,6 @@
         .skills-container {
             background: #ffffff;
             padding: 2rem;
-            /* Reduced from 2.5rem */
             border-radius: 20px;
             border: 1px solid rgba(74, 115, 89, 0.15);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
@@ -599,7 +586,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            /* Reduced from 2.5rem */
         }
 
         @media (max-width: 768px) {
@@ -696,9 +682,9 @@
 
 
     <style>
-        /* PROJECTS SECTION SPACING - Reduced to 3.5rem */
+        /* PROJECTS SECTION SPACING - Increased to 7rem */
         #projects {
-            padding: 3.5rem 10%;
+            padding: 7rem 10%;
         }
 
         .project-grid-2col {
@@ -901,22 +887,6 @@
                 </div>
             </div>
 
-        </div>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <div class="education-timeline">
-            <div class="education-item">
-                <h3>IISER Bhopal</h3>
-                <p>BS-MS in Geology | <span class="education-grade">CPI: 9.18</span></p>
-                <small style="font-weight: 700; color: var(--text-secondary);">2021 – 2026</small>
-            </div>
-            <div class="education-item">
-                <h3>Jai Bharat Junior College</h3>
-                <p>HSC (High School) | <span class="education-grade">96%</span></p>
-                <small style="font-weight: 700; color: var(--text-secondary);">2021</small>
-            </div>
         </div>
     </section>
 
