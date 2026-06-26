@@ -650,19 +650,19 @@
 
             <!-- Card 3 (Non-clickable Work in Progress) -->
             <div class="research-card" style="cursor: default; opacity: 0.9;">
-                <div class="research-figure">
-                    <img src="river-research-bg.jpg" alt="Fluvial Geomorphology">
-                </div>
-                <div class="research-content">
-                    <div class="research-status">Current Project | FGRS Lab</div>
-                    <h3>Dynamics of Braided Rivers</h3>
-                    <p>Quantifying river morphodynamics and channel migration in high-energy systems. Utilizing remote
-                        sensing time-series and machine learning to analyze sediment transport and bar dynamics.</p>
-                    <div class="research-cta" style="color: var(--text-secondary); border-top: 1px solid var(--primary-sage-muted);">
-                        <i class="fas fa-spinner fa-spin-pulse"></i> Work in Progress
+                    <div class="research-figure">
+                        <img src="river-research-bg.jpg" alt="Fluvial Geomorphology">
+                    </div>
+                    <div class="research-content">
+                        <div class="research-status">Current Project | FGRS Lab</div>
+                        <h3>Dynamics of Braided Rivers</h3>
+                        <p>Quantifying river morphodynamics and channel migration in high-energy systems. Utilizing remote
+                            sensing time-series and machine learning to analyze sediment transport and bar dynamics.</p>
+                        <div class="research-cta" style="color: var(--text-secondary); border-top: 1px solid var(--primary-sage-muted);">
+                            Ongoing Work
+                        </div>
                     </div>
                 </div>
-            </div>
 
         </div>
     </section>
@@ -986,8 +986,125 @@
         </div>
     </section>
 
+    <style>
+        /* EDUCATION SECTION STYLING */
+        #education {
+            padding: 7rem 10%;
+            background-color: #ffffff;
+        }
+
+        .education-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .education-card {
+            background: #ffffff;
+            border: 1px solid var(--border-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 6px solid var(--primary-sage);
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+        }
+
+        .education-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(74, 115, 89, 0.12);
+            border-color: var(--primary-sage);
+        }
+
+        .edu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .edu-institution {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-sage-dark);
+            line-height: 1.2;
+        }
+
+        .edu-date {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: var(--primary-sage);
+            background: var(--primary-sage-muted);
+            padding: 5px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .edu-degree {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            display: block;
+        }
+
+        .edu-meta {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .edu-grade-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-sage-light);
+            color: var(--primary-sage-dark);
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            border: 1px solid rgba(74, 115, 89, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .edu-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+    <section id="education">
+        <h2>Education</h2>
+        <div class="edu-timeline">
+
+            <!-- IISER BHOPAL -->
+            <div class="edu-item">
+                <div class="edu-card">
+                    <div class="edu-header">
+                        <div class="edu-institution">IISER Bhopal</div>
+                        <div class="edu-year">2021 — 2026</div>
+                    </div>
+                    <span class="edu-degree">BS-MS in Geology</span>
+                    <p class="edu-details">
+                        Dept. of Earth and Environmental Sciences<br>
+                        Pre-Majors: EES, Physics, Data Science
+                    </p>
+                    <div class="edu-grade-pill">CPI: 9.25 / 10.0</div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
     <footer>
-        <p>&copy; 2026 Saurabh Toraskar. Geology & Climate AI Portfolio.</p>
+        <p>&copy; 2026 Saurabh Toraskar. AI for Earth Sciences and Hydrology Researcher.</p>
+        <p>Contact: <a href="mailto:saurabhtoraskar31@gmail.com" style="color: white; text-decoration: none;">saurabhtoraskar31@gmail.com</a></p>
     </footer>
 
 </body>
