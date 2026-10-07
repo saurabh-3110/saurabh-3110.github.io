@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master's Thesis | MC-LSTM-DS | Saurabh Toraskar</title>
+    <title>MC-LSTM-DS | Saurabh Toraskar</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -269,12 +269,11 @@
 
     <header>
         <div class="header-container">
-            <div class="research-badge">Master's Thesis | Under Review</div>
-            <h1>Mass-Conserving LSTM with Dual States for Streamflow Prediction</h1>
+            <h1>Mass-Conserving LSTM with Dual States for Streamflow Prediction: Separating Quickflow and Slow Storage</h1>
             <div class="meta-strip">
-                <div class="meta-item"><i class="fa-solid fa-graduation-cap"></i><span>BS-MS Thesis, Geology (2026)</span></div>
+                <div class="meta-item"><i class="fa-solid fa-book"></i><span>Journal of Geophysical Research: Machine Learning and Computation,3 (2026)</span></div>
+                <div class="meta-item"><i class="fa-solid fa-graduation-cap"></i><span>BS-MS, IISER Bhopal (2026)</span></div>
                 <div class="meta-item"><i class="fa-solid fa-user-tie"></i><span>Supervisor: Dr. Kumar Gaurav</span></div>
-                <div class="meta-item"><i class="fa-solid fa-building-columns"></i><span>IISER Bhopal</span></div>
             </div>
         </div>
     </header>
@@ -286,21 +285,56 @@
             </div>
 
             <h2>Research Overview</h2>
-            <p>While deep learning models show high predictive capability in hydrology, they frequently lack physical consistency and interpretability. This research introduces the <strong>Mass-Conserving Long Short-Term Memory with Dual States (MC-LSTM-DS)</strong> architecture. The model is designed to explicitly separate short- and long-term hydrological memory by enforcing strict mass balance constraints within the neural network's internal structure.</p>
-
+            <p>Although deep learning delivers strong predictive performance in hydrology, standard architectures often act as black boxes that blur distinct physical timescales and violate conservation laws. In reality, streamflow integrates both fast-responding surface runoff and slow, long-term catchment storage. To explicitly represent these dual dynamics while ensuring physical consistency, we propose the <strong> Mass-Conserving Long Short-Term Memory with Dual States (MC-LSTM-DS)</strong>.</p>
             <h2>Architecture & Technical Specifics</h2>
-            <p>The architecture moves beyond "black-box" regression by treating hidden states as physical storage reservoirs:</p>
+            <p>The key contribution of the study are:</p>
             <ul>
-                <li><strong>Dual-State Mechanism:</strong> Introduced a second cell state to complement the original memory unit. Internal investigations confirm that the additional state captures slow storage and release processes such as groundwater and subsurface flow, while the original state represents fast-flow components like surface runoff.</li>
+                <li><strong>Dual-State Mechanism:</strong> Introduced a second cell state to complement the original memory unit. The two states separate short- and long-term hydrological memory by enforcing strict mass balance constraints within the neural network's internal structure.</li>
                 <li><strong>Gating & Mass Balance:</strong> Utilized specialized redistribution and partitioning gates to allocate incoming rainfall between short-term and long-term storage. These mechanisms ensure that the water balance is strictly maintained at every temporal step.</li>
-                <li><strong>Hydrological Interpretability:</strong> Investigation of internal states and mechanisms proves that the model successfully captures signatures of distinct runoff-generating processes, specifically infiltration-excess and saturation-excess overland flow across varying climates.</li>
+                <li><strong>Hydrological Interpretability:</strong> Analyzing the internal states provides insights into the catchment's dominant hydrological processes, and the partitioning mechanisms show similarities across different runoff-generating processes.</li>
             </ul>
 
             <h2>Cross-Regional Evaluation</h2>
-            <p>The framework was benchmarked against standard sequential models across <strong>158 basins in India (CAMELS-IND)</strong> and <strong>531 basins in the United States (CAMELS-US)</strong>. Results demonstrate that the dual-state architecture effectively mitigates the performance trade-offs inherent in strict mass conservation, achieving state-of-the-art results in <strong>Kling-Gupta Efficiency</strong> and <strong>high-flow bias</strong> across diverse hydro-climatic settings.</p>
+            <p>The framework was benchmarked against standard sequential models across <strong>158 basins in India (CAMELS-IND)</strong> and <strong>531 basins in the United States (CAMELS-US)</strong>. Our model outperformed all models on the CAMELS-IND dataset, and the performance of MC-LSTM-DS on the CAMELS-US matches that of LSTM and MC-LSTM in Nash-Sutcliffe Efficiency and attains state-of-the-art Kling-Gupta Efficiency and FHV (High Flow Bias).</p>
         </div>
 
         <div class="content-sidebar">
+            <div class="sidebar-card">
+                <h3>Access Research</h3>
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; text-align: justify;">
+                    Access the published research, accompanying code and datasets, or download the conference presentation materials below.
+                </p>
+                
+                <!-- PUBLICATION LINK -->
+                <a href="https://doi.org/10.1029/2026JH001385" target="_blank" class="action-btn">
+                    <i class="fas fa-file-pdf"></i> Read Publication
+                </a>
+
+                <!-- CODE & DATA REPOSITORY LINK (ZENODO) -->
+                <a href="https://zenodo.org/records/17881538" target="_blank" class="action-btn"
+                    style="background: transparent; color: var(--primary-sage); border: 1px solid var(--primary-sage);">
+                    <i class="fas fa-database"></i> Code & Data Repository
+                </a>
+
+                <!-- POSTER LINK -->
+                <a href="EGU26-poster.pdf" target="_blank" class="action-btn"
+                    style="background: transparent; color: var(--primary-sage); border: 1px solid var(--primary-sage);">
+                    <i class="fas fa-image"></i> Download EGU Poster
+                </a>
+
+                <!-- CITATIONS -->
+                <div style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 1.5rem; border-top: 1px solid var(--border-light); padding-top: 1rem; line-height: 1.55; text-align: justify;">
+                    <p style="margin-bottom: 0.8rem;">
+                        If this work helps your research, please cite the paper:<br>
+                        <strong style="color: var(--text-primary);">Toraskar, S., Niranjannaik, M., Singh, A., & Gaurav, K. (2026). Mass-conserving LSTM with dual states for streamflow prediction: Separating quickflow and slow storage. <em>Journal of Geophysical Research: Machine Learning and Computation</em>, 3, e2026JH001385. <a href="https://doi.org/10.1029/2026JH001385" target="_blank" style="color: var(--primary-sage); word-break: break-all;">https://doi.org/10.1029/2026JH001385</a></strong>
+                    </p>
+                    <p style="margin-bottom: 0;">
+                        To cite the code and dataset:<br>
+                        <strong style="color: var(--text-primary);">Toraskar, S., M. Niranjannaik, Singh, A., & Gaurav, . kumar . (2026). Mass-Conserving LSTM with Dual States for Streamflow Prediction: Separating Quickflow and Slow Storage. Zenodo. <a href="https://doi.org/10.5281/zenodo.17881538" target="_blank" style="color: var(--primary-sage); word-break: break-all;">https://doi.org/10.5281/zenodo.17881538</a></strong>
+                    </p>
+                </div>
+            </div>
+
             <div class="sidebar-card">
                 <h3>Technical Stack</h3>
                 <div class="skill-tags">
@@ -310,25 +344,6 @@
                     <span class="skill-pill">Mass Conservation</span>
                     <span class="skill-pill">LSTM</span>
                 </div>
-            </div>
-
-            <div class="sidebar-card">
-                <h3>Access Research</h3>
-                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; text-align: justify;">
-                    Download the EGU26 conference materials below for a detailed overview of the methodology and results.
-                </p>
-                
-                <a href="EGU26-abstract.pdf" target="_blank" class="action-btn" style="background: transparent; color: var(--primary-sage); border: 1px solid var(--primary-sage); margin-bottom: 10px;">
-                    <i class="fas fa-file-lines"></i> Download EGU Abstract
-                </a>
-
-                <a href="EGU26-poster.pdf" target="_blank" class="action-btn">
-                    <i class="fas fa-file-pdf"></i> Download EGU Poster
-                </a>
-
-                <p style="font-size: 0.85rem; color: var(--text-primary); margin-top: 1.5rem; font-weight: 600; text-align: justify; border-top: 1px solid var(--border-light); padding-top: 1rem;">
-                    Note: The full Master's thesis, manuscript, and implementation codes will be made available upon the final acceptance of the peer-reviewed paper.
-                </p>
             </div>
         </div>
     </main>
